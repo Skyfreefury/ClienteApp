@@ -1,0 +1,10 @@
+ClienteApp\probrarbbdd.class
+ClienteApp\Service\ClientService.class
+ClienteApp\Model\Client.class
+ClienteApp\Repository\ClientDAOjdbc.class
+ClienteApp\Controller\ClientController.class
+ClienteApp\Repository\Conection.class
+ClienteApp\Configweb\WebConfig.class
+ClienteApp\Repository\ClientDAO.class
+ClienteApp\Repository\ClientDAOEnMemoria.class
+ClienteApp\ClientAppApplication.class
