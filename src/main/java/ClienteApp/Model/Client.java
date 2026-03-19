@@ -17,6 +17,7 @@ public class Client {
     private double compra3;
     private double promedioCompras;
     private String foto;
+    private TipoCliente tipocliente;
     
     
     //Constructor
@@ -29,6 +30,10 @@ public class Client {
         this.compra2 = compra2;
         this.compra3 = compra3;
         this.foto = foto;
+    }
+
+    public Client(TipoCliente tipocliente) {
+        this.tipocliente = tipocliente;
     }
     public Client() {
     }
@@ -87,6 +92,12 @@ public class Client {
     }
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+    public TipoCliente getTipocliente() {
+        return tipocliente;
+    }
+    public void setTipocliente(TipoCliente tipocliente) {
+        this.tipocliente = tipocliente;
     }
     //To String
     @Override

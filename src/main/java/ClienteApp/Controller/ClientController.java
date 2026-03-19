@@ -6,6 +6,7 @@ package ClienteApp.Controller;
 
 import ClienteApp.Model.Client;
 import ClienteApp.Service.ClientService;
+import ClienteApp.Service.TipoClienteService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,10 +32,13 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ClientController {
     private final ClientService clientService;
-    
+    private final TipoClienteService tipoClienteService;
+
+    // 🟢 Fíjate que ahora metemos ambos servicios dentro de los paréntesis del constructor
     @Autowired
-    public ClientController(ClientService clientService){
+    public ClientController(ClientService clientService, TipoClienteService tipoClienteService){
         this.clientService = clientService;
+        this.tipoClienteService = tipoClienteService; // 🟢 Y lo inicializamos aquí
     }
     @GetMapping({"/", "/clientes"})
     public String getAllClient(Model model) {
@@ -43,9 +47,12 @@ public class ClientController {
         model.addAttribute("clientes",uno);
         return "index";
     }
+    // Modifica mostrarFormulario
     @GetMapping("/clientes/nuevo")
     public String mostrarFormulario(Model model) {
         model.addAttribute("cliente", new Client());
+        // 👇 NUEVO: Mandamos la lista de tipos al HTML
+        model.addAttribute("tiposCliente", tipoClienteService.getAllTipoCliente()); 
         return "form";
     }
     @Value("${app.upload.dir}")
@@ -65,15 +72,18 @@ public class ClientController {
         clientService.guardarClient(client);
         return "redirect:/clientes";
     }
+    // Modifica mostrarFormularioEditar
     @GetMapping("/clientes/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable int id, Model model) {
         Client client = clientService.getforID(id);
         model.addAttribute("cliente", client);
+        // 👇 NUEVO: Mandamos la lista de tipos al HTML
+        model.addAttribute("tiposCliente", tipoClienteService.getAllTipoCliente());
         return "form";
     }
     
     @PostMapping("/clientes/actualizar")
-public String actualizarCliente(@ModelAttribute Client client,
+    public String actualizarCliente(@ModelAttribute Client client,
                 @RequestParam("archivo") MultipartFile archivo) throws IOException {
 
     Client clientExistente = clientService.getforID(client.getId());
