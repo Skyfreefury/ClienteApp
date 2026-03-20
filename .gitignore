@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Evita volver a versionar una copia anidada del proyecto
+/ClientApp/

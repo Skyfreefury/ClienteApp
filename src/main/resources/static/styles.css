@@ -6,98 +6,60 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 11 feb 2026, 11:26:04
     Author     : christianmogena3
 */
-body{
-    background: #f4f6f9;
-    font-family: "Segoe UI", Arial, sans-serif;
+:root {
+    --bg-color: #f8f9fa;
+    --primary: #4361ee;
+    --premium: #ffb703;
+    --normal: #8d99ae;
 }
-h2{
-    color: #2c3e50;
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Imagen de Cliente circular */
+.client-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+/* Badges Personalizados */
+.badge-custom {
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.75rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    text-transform: uppercase;
 }
-.table{
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
+
+.badge-premium {
+    background-color: var(--premium);
+    color: #2b2d42;
 }
-.table thead{
-    background: #2c3e50;
+
+.badge-normal {
+    background-color: var(--normal);
     color: white;
 }
-.table-hover tbody tr:hover{
-    background: #ecf0f1;
-}
-.btn-warning{
-    font-weight: 600;
-}
-.btn-danger{
-    font-weight: 600
-}
-.btn-primary, .btn-sucess{
-    font-weight: 600;
-    border-radius: 6px;
-}
 
-.container form{
-    background: whitesmoke;
-    padding: 25px;
+/* Inputs con estilo */
+.form-control, .form-select {
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-.form-control{
-    border-radius: 6px;
-    border: 1px solid #ced4da;
-    transition: all 0.2s ease;
-}
-.form-control:focus{
-    border-color: #1abc9c;
-    box-shadow: 0 0 4px rgba(26, 188, 156, 0.4);
-}
-.form-label{
-    font-weight: 600;
-    color: #34495e;
-}
-.btn-primary{
-    background-color: #1abc9c;
-    border-color: #16a085;
-}
-.btn-primary:hover{
-    background-color: #16a085;
-}
-.btn-secondary{
-    font-weight: 600;
-}
-.mb-3{
-    margin-bottom: 18px;
-}
-.btn-ghost {
-    display: inline-block;
-    padding: 0.40rem 1.05rem;
-    border: 2px solid #444;
-    color: #444;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all .2s ease;
-    margin-bottom: 2rem;
+    padding: 12px;
+    border: 1px solid #dee2e6;
 }
 
-.btn-ghost:hover {
-    background-color: #444;
-    color: #fff;
+.form-control:focus {
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
+    border-color: var(--primary);
 }
-.btn-base { display: inline-block; padding: 0.45rem 0.9rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.9rem; border: none; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease, background-color .15s ease; } 
-.btn-base:hover { transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.18); } 
-/* Guardar */ 
-.btn-primary-custom { background-color: #2563eb; color: #fff; } 
-/* Cancelar */ 
-.btn-secondary-custom { background-color: #6b7280; color: #fff; } 
-/* Editar */ 
-.btn-edit { background-color: #10b981; color: #fff; } /* Eliminar */ 
-.btn-delete { background-color: #ef4444; color: #fff; } 
-.btn-primary-custom:hover { background-color: #1d4ed8; } 
-.btn-secondary-custom:hover { background-color: #4b5563; } 
-.btn-edit:hover { background-color: #059669; } 
-.btn-delete:hover { background-color: #dc2626; }
-.btn-clean { display: inline-block; padding: 0.55rem 1.1rem; background-color: #2d89ef; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background-color .2s ease, transform .15s ease; } 
-.btn-clean:hover { background-color: #1b5fbf; transform: translateY(-2px); }
+
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+    border-radius: 10px;
+}
