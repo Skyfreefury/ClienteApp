@@ -2,8 +2,40 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
-/* 
+/*
     Created on : 19 mar 2026, 13:10:07
     Author     : christianmogena3
 */
+body {
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    min-height: 100vh;
+}
 
+.category-item {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.category-item:hover {
+    transform: scale(1.02);
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #4361ee;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.btn-success {
+    background-color: #2ec4b6;
+    border: none;
+}

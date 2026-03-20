@@ -2,46 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario Clientes</title>
+    <title>Editor de Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
-<body>
-<div class="container mt-4">
-    <h2 th:text="${cliente.id == 0} ? 'Agregar Cliente' : 'Editar Cliente'"></h2>
-    <form th:action="${cliente.id==0} ? @{/clientes/guardar} : @{/clientes/actualizar}" th:object="${cliente}" method="post" enctype="multipart/form-data">
-        <input type="hidden" th:field="*{id}"/>
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required />
+<body class="bg-light">
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-dark text-white p-4">
+                    <h2 class="mb-0" th:text="${cliente.id == 0} ? 'Registro de Nuevo Cliente' : 'Actualizar Cliente'"></h2>
+                </div>
+                <div class="card-body p-5">
+                    <form th:action="${cliente.id == 0} ? @{/clientes/guardar} : @{/clientes/actualizar}" 
+                        th:object="${cliente}" method="post" enctype="multipart/form-data">
+                        
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Nombre</label>
+                                <input type="text" class="form-control" th:field="*{nombre}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Apellido</label>
+                                <input type="text" class="form-control" th:field="*{apellido}" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Edad</label>
+                                <input type="number" class="form-control" th:field="*{edad}" required>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label fw-bold">Tipo de Cliente (Categoría)</label>
+                                <select class="form-select select-custom" th:field="*{tipoCliente.id}" required>
+                                    <option value="0">-- Seleccione una categoría --</option>
+                                    <option th:each="tipo : ${tiposCliente}" 
+                                            th:value="${tipo.id}" 
+                                            th:text="${tipo.nombre}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-light rounded-3 mb-4 border">
+                            <h5 class="mb-3 text-muted">Historial de Compras</h5>
+                            <div class="row g-3">
+                                <div class="col"><input type="number" step="0.01" class="form-control" th:field="*{compra1}" placeholder="Compra 1"></div>
+                                <div class="col"><input type="number" step="0.01" class="form-control" th:field="*{compra2}" placeholder="Compra 2"></div>
+                                <div class="col"><input type="number" step="0.01" class="form-control" th:field="*{compra3}" placeholder="Compra 3"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="form-label fw-bold">Foto de Perfil</label>
+                            <input type="file" class="form-control" name="archivo">
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-3">
+                            <a th:href="@{/clientes}" class="btn btn-light btn-lg">Cancelar</a>
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Guardar Información</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required />
-        </div>
-        <div class="mb-3">
-            <label for="edad" class="form-label">Edad</label>
-            <input type="number" class="form-control" id="edad" th:field="*{edad}" required />
-        </div>
-        <div class="mb-3">
-            <label for="compra1" class="form-label">Compra 1</label>
-            <input type="number" step="0.01" class="form-control" id="compra1" th:field="*{compra1}" required />
-        </div>
-        <div class="mb-3">
-            <label for="compra2" class="form-label">Compra 2</label>
-            <input type="number" step="0.01" class="form-control" id="compra2" th:field="*{compra2}" required />
-        </div>
-        <div class="mb-3">
-            <label for="compra3" class="form-label">Compra 3</label>
-            <input type="number" step="0.01" class="form-control" id="compra3" th:field="*{compra3}" required />
-        </div>
-        <div class="mb-3">
-        <label class="form-label">Ruta Archivo</label>
-        <input type="file" class="form-control" name="archivo">
-        </div>
-        <button type="submit" class="btn btn-primary btn-base">Guardar</button>
-        <a href="/clientes" class="btn btn-secondary btn-base">Cancelar</a>
-    </form>
+    </div>
 </div>
 </body>
 </html>
